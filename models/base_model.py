@@ -35,3 +35,20 @@ class BaseModel:
                    self.id,
                    self.__dict__
                ))
+
+    def save(self) -> None:
+        self.updated_at = datetime.now()
+
+    def to_dict(self) -> dict:
+        # Copy instance dict to manipulate
+        # w/o changing orignal
+        dict_copy = self.__dict__.copy()
+        
+        # Convert timestamps to strings
+        dict_copy['created_at'] = self.created_at.isoformat()
+        dict_copy['updated_at'] = self.updated_at.isoformat()
+        
+        # Add the __class__ key
+        dict_copy['__class__'] = self.__class__.__name__
+        
+        return dict_copy
