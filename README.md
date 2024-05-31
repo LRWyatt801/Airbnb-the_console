@@ -12,16 +12,30 @@ this is a description of the HBNB console, slightly more in depth with a few sma
 
 ## Installation
 
-This program was developed with Python in Ubuntu Linux, and is meant to work on a Linux distribution- if you are running Windows look into installing [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
+This program was developed in Python on Ubuntu Linux, and is meant to work on a Linux distribution- if you are running Windows look into installing [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 
 > In your terminal, run ```git clone https://github.com/LRWyatt801/atlas-AirBnB_clone.git```
 > Once downloaded, run the command ```./console.py``` to begin
 
 
+
 ## How to use
 
-this is a more detailed description of how to use the program, including examples and diagrams/images of how it works under the hood and how it works for the end user
+Here's a list of commands our console supports:
 
+- ```EOF```     - exits the console
+- ```quit```    - also exits the console
+- ```help```    - assists with commands
+- ```create```  - creates a new instance (state, city, listing, etc)
+- ```show```    - show will print a specific instance
+- ```destroy``` - destroy + className + id will remove that instance from the program
+- ```all```     - all + className will print all instances of a class, shows everything with no arguments
+- ```update```  - update + className + id will update that specific instance
+
+> [!IMPORTANT]
+> Most of these commands require entering both the className of the instance and the id in question in order to access, as shown: 
+> ex. 1: ```create listing 1234-1234-1234```
+> ex. 2: ```show listing 4567-4567-4567```
 
 ## Dependencies
 
