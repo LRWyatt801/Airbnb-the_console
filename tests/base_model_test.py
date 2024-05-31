@@ -25,7 +25,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(self.my_base.updated_at, datetime)
     
     def test_to_dict(self):
-        pass
+        self.assertIsInstance(self.my_base.to_dict(), dict)
     
     def test_str(self):
+        # self.my_base.id = 42
+        # self.assertMultiLineEqual(print(self.my_base), )
         pass
