@@ -69,10 +69,14 @@ class HBNBCommand(cmd.Cmd):
                 class_name = args[0]
                 print("EVERYTHING in {}".format(class_name))
 
-    def do_update(self, *args):
+    def do_update(self, line):
         """Updates an instance based on className and id
         and attribute"""
-        pass
+        if self.class_is(line, True) and self.class_in_dict(line, True):
+            if self.instance_id_is(line, True) and self.instance_id__is_valid(line, True):
+                if self.attribute_exits(line, True) and self.value_exits(line, True):
+                    args = line.split()
+                    print("{} {} updated to {}".format(args[1], args[2], args[3]))
     
     ############Help Text
 
@@ -175,11 +179,22 @@ class HBNBCommand(cmd.Cmd):
     def attribute_exits(self, line, err):
         """checks if attribute is passed"""
         args = line.split()
-
-        pass
+        if len(args) == 2:
+            if err == True:
+                print("** attribute name missing **")
+            return False
+        else:
+            return True
 
     def value_exits(self, line, err):
-        pass
+        """checks if value for attribute is passed"""
+        args = line.split()
+        if len(args) == 3:
+            if err == True:
+                print("** value missing **")
+            return False
+        else:
+            return True
         
 
 if __name__ == '__main__':
