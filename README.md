@@ -71,7 +71,7 @@ state = {
 ```
 All the above classes inherit from a common class ```Basemodel``` which gives each class a common pool of methods and attributes to pull from. Here's a diagram of how these different classes interact with one another: 
 
-![dataflow](https://imgur.com/a/TmOgGZn)
+![dataflow](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2020/9/99e1a8f2be8c09d5ce5ac321e8cf39f0917f8db5.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20240601%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20240601T021325Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=9223da17c56396026e7f8cf4c7300d7f7aa2a35019c63a79e3aff64e89f38f98)
 
 ## About the developers
 
