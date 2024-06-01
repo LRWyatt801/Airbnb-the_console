@@ -60,15 +60,17 @@ class HBNBCommand(cmd.Cmd):
 
     def help_EOF(self):
         """help text for update"""
-        print("this text should override the doc!")
+        print("Get helpful insight into using the console")
 
     def help_quit(self):
         """help text for quit"""
-        print("this text should override the doc!")
+        print("Use this to quit the application")
 
     def help_create(self):
         """help text for create"""
-        print("this text should override the doc!")
+        print(f"Use this to create new instances of a class "
+              + f"and returns the new instance's ID\n"
+              + f"example: create <className>\n")
 
     def help_show(self):
         """help text for show"""
