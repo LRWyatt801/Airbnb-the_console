@@ -49,6 +49,30 @@ this is a table and description of all the modules we used to make the program, 
 | [unittest](https://docs.python.org/3.4/library/datetime.html)         | Testing and QA module      |
 
 
+## Dataflow
+
+The HBNB console doesn't depend on a strict hierarchy of monolithic Dictionaries, rather it connects separate instances through unique ids
+
+```Python
+listing = {
+    'id' = '1234-1234-1234-1234',
+    'user_id' = '3456-3456-3456-3456'
+    'city_id' = '7890-7890-7890-7890'
+}
+
+city = {
+    'id' = '7890-7890-7890-7890'
+    'state_id' = '5678-5678-5678-5678'
+}
+
+state = {
+    'id' = '5678-5678-5678-5678'
+}
+```
+All the above classes inherit from a common class ```Basemodel``` which gives each class a common pool of methods and attributes to pull from. Here's a diagram of how these different classes interact with one another: 
+
+![dataflow](https://imgur.com/a/TmOgGZn)
+
 ## About the developers
 
 Logan Wyatt and Davey Hays are two Tulsa based developers and current students at Atlas Tulsa (formerly: Holburton). 
