@@ -15,6 +15,16 @@ class HBNBCommand(cmd.Cmd):
     Documented Commands: EOF and quit"""
     prompt = '(hbnb) '
 
+    class_map = {
+        "BaseModel": BaseModel,
+        "Amenity": Amenity,
+        "City": City,
+        "Place": Place,
+        "Review": Review,
+        "State": State,
+        "User": User
+    }
+
     def do_EOF(self, arg):
         """EOF command to exit program\n"""
         if self.file:
@@ -43,9 +53,10 @@ class HBNBCommand(cmd.Cmd):
         if self.class_is(line, True) and self.class_in_dict(line, True):
 
             args = line.split()
-
-            print("class created: {}".format(args[0]))
-            return
+            class_name = args[0]
+            class_obj = self.class_map[class_name]
+            new_instance = class_obj()
+            print(new_instance.id)
 
     def do_show(self, line):
         """Prints string representation
@@ -150,11 +161,9 @@ class HBNBCommand(cmd.Cmd):
 
     def class_in_dict(self, line, err):
         """validator for class in line"""
-        class_dict = {'BaseModel', 'City', 'State', 'User',
-                      'Place', 'Review', 'Amenity'}
         args = line.split()
         class_name = args[0]
-        if class_name not in class_dict:
+        if class_name not in self.class_map:
             if err is True:
                 print("** class doesn't exits **")
             return False
