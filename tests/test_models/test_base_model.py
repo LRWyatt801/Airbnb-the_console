@@ -48,6 +48,20 @@ class TestBaseModel(unittest.TestCase):
             self.my_base.__dict__
         )
         self.assertEqual(str(self.my_base), expected_output)
+    
+    def test_from_dict(self):
+        """test instance creation from dictionary"""
+        my_model = BaseModel()  # create model
+        my_model.name = "My_first_Model"
+        my_model.number = 89
+        my_model_json = my_model.to_dict()  # turn it into str
+        my_new_model = BaseModel(**my_model_json)  # upload new instance
+        
+        self.assertEqual(my_model.id, my_new_model.id)
+        self.assertEqual(my_model.created_at, my_new_model.created_at)
+        self.assertEqual(my_model.name, my_new_model.name)
+        self.assertIsNot(my_model, my_new_model)
+        
 
 if __name__ == '__main__':
     unittest.main()

@@ -13,14 +13,25 @@ class BaseModel:
     """Defines all common attributes and methods
     for other classes
     """
-    def __init__(self) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         """Initialize instance with random UUID
         and timestamps for created_at and updated_at
         """
-        new_id = uuid.uuid4()  # Asign random UUID
-        self.id = str(new_id)
-        self.created_at = datetime.now()  # Created timestamp
-        self.updated_at = datetime.now()  # Update timestamp
+        if kwargs:  # Create instance from dict/json
+            for key, value in kwargs.items():
+                if key == 'created_at' or key == 'updated_at':
+                    setattr(self, key, datetime.fromisoformat(value))
+                elif key == '__class__':
+                    pass
+                else:
+                    setattr(self, key, value)
+
+        else:  # Create brand new instance
+            new_id = uuid.uuid4()  # Asign random UUID
+            self.id = str(new_id)
+            self.created_at = datetime.now()  # Created timestamp
+            self.updated_at = datetime.now()  # Update timestamp
+
 
     def __str__(self) -> str:
         """Change string representation of class instance to:
