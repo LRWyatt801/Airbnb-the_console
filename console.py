@@ -9,6 +9,7 @@ class HBNBCommand(cmd.Cmd):
     Documented Commands: EOF and quit"""
     prompt = '(hbnb) '
 
+   
     def do_EOF(self, arg):
         """EOF command to exit program\n"""
         if self.file:
@@ -18,7 +19,7 @@ class HBNBCommand(cmd.Cmd):
             return True
     
     def do_quit(self, arg):
-        """Quit command to exit program\n"""
+        """Quit command to exit program"""
         return True
     
     def emptyline(self):
@@ -29,29 +30,46 @@ class HBNBCommand(cmd.Cmd):
 
     ########### CRUD functions
 
-    def do_create():
+    def do_create(self, line):
         """Create a new instance
         of a class. Takes className
         as argument"""
-        pass
 
-    def do_show():
+        if self.class_is(line, True) and self.class_in_dict(line, True):
+
+            args = line.split()
+
+            print("class created: {}".format(args[0]))
+            return
+
+    def do_show(self, line):
         """Prints string representation
         of an instance. Takes arguments 
         className and id"""
-        pass
+        if self.class_is(line, True) and self.class_in_dict(line, True):
+            if self.instance_id_is(line, True) and self.instance_id__is_valid(line, True):
+                print("that specific instance")
 
-    def do_destroy():
+    def do_destroy(self, line):
         """Deletes an instance based on
         the className and id"""
-        pass
+        if self.class_is(line, True) and self.class_in_dict(line, True):
+            if self.instance_id_is(line, True) and self.instance_id__is_valid(line, True):
+                print("that specific instance destroyed")
 
-    def do_all():
+    def do_all(self, line):
         """Prints string representation of all instances, 
         optional argument className"""
-        pass
 
-    def do_update():
+        if not self.class_is(line, False):
+            print("EVERYTHING")
+        else:
+            if self.class_in_dict(line, True):
+                args = line.split()
+                class_name = args[0]
+                print("EVERYTHING in {}".format(class_name))
+
+    def do_update(self, *args):
         """Updates an instance based on className and id
         and attribute"""
         pass
@@ -60,34 +78,109 @@ class HBNBCommand(cmd.Cmd):
 
     def help_EOF(self):
         """help text for update"""
-        print("Get helpful insight into using the console")
+        print(f"\nEOF: \nUse this to quit the application\n")
 
     def help_quit(self):
         """help text for quit"""
-        print("Use this to quit the application")
+        print(f"\nQuit: \nUse this to quit the application\n")
 
     def help_create(self):
         """help text for create"""
-        print(f"Use this to create new instances of a class "
-              + f"and returns the new instance's ID\n"
-              + f"example: create <className>\n")
+        print(f"\nCreate: \n"
+              + f"Use this to create new instances of a class "
+              + f"and returns the new instance's ID\n\n"
+              + f"example: create <className>\n"
+              + f"1234-1234-1234-1234\n")
 
     def help_show(self):
         """help text for show"""
-        print("this text should override the doc!")
+        print(f"\nShow: \n"
+              + f"Use this to print instances of a class\n\n"
+              + f"example: create <className>\n"
+              + f"1234-1234-1234-1234\n")
 
+   
     def help_destroy(self):
         """help text for destroy"""
-        print("this text should override the doc!")
+        print(f"\nDestroy: \n"
+              + f"Use this to destroy an instance of a class\n\n"
+              + f"example: destroy <className>\n")
+
 
     def help_all(self):
         """help text for all"""
-        print("this text should override the doc!")
+        print(f"\nAll: \n"
+              + f"Use this to display all instances on record\n"
+              + f"optional: pass <className> to filter by class\n\n"
+              + f"example: all             // displays all\n"
+              + f"example: all <classname> // displays all in class\n")
 
     def help_update(self):
         """help text for update"""
-        print("this text should override the doc!")
+        print(f"\nUpdate: \n"
+              + f"Use this to update an instance of a class\n\n"
+              + f"example: update <className> <id> <attr> <value>\n"
+              + f"example: update User 1234-1234-1234-1234 "
+              + f"email 'moe.szyslak@email.com\n")
 
+    ############utils
+
+    def class_is(self, line, err):
+        """validator for line"""
+        args = line.split()
+
+        if len(args) == 0:
+            if err == True:
+                print("** class name missing **")
+            return False
+        else:
+            return True
+
+    def class_in_dict(self, line, err):
+        """validator for class in line"""
+        class_dict = {'BaseModel'}
+        args = line.split()
+        class_name = args[0]
+        if class_name not in class_dict:
+            if err == True:
+                print("** class doesn't exits **")
+            return False
+        else:
+            return True
+    
+    def instance_id_is(self, line, err):
+        """checks to see if instance arg is passed"""
+        args = line.split()
+
+        if len(args) == 1:
+            if err == True:
+                print("** instance id missing **")
+            return False
+        else:
+            return True
+
+    def instance_id__is_valid(self, line, err):
+        """checks to see if instance id is valid"""
+        instance_id_dict = {'1234-1234-1234-1234'}
+        args = line.split()
+
+        instance_id = args[1]
+        if instance_id not in instance_id_dict:
+            if err == True:
+                print("** no instance found **")
+            return False
+        else:
+            return True
+
+    def attribute_exits(self, line, err):
+        """checks if attribute is passed"""
+        args = line.split()
+
+        pass
+
+    def value_exits(self, line, err):
+        pass
+        
 
 if __name__ == '__main__':
     """This is the engine that makes the
