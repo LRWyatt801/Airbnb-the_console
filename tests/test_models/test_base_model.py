@@ -42,12 +42,10 @@ class TestBaseModel(unittest.TestCase):
     
     def test_str(self):
         """test the __str__ method"""
-        expected_output = "[{}] ({}) {{'id': '{}', 'created_at': '{}', 'updated_at': '{}'}}".format(
+        expected_output = "[{}] ({}) {}".format(
             self.my_base.__class__.__name__,
             self.my_base.id,
-            self.my_base.id,
-            self.my_base.created_at,
-            self.my_base.updated_at
+            self.my_base.__dict__
         )
         self.assertEqual(str(self.my_base), expected_output)
 
