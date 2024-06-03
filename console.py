@@ -9,6 +9,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -26,7 +27,7 @@ class HBNBCommand(cmd.Cmd):
         "User": User
     }
 
-    data = models.storage.all()
+    # data = models.storage.all()
 
     def do_EOF(self, line):
         """EOF command to exit program\n"""
@@ -88,17 +89,21 @@ class HBNBCommand(cmd.Cmd):
         """Prints string representation of all instances,
         optional argument className"""
 
+        obj = storage.all()
+
+        # print all existing objects
         if not self.class_is(line, False):
-            print(self.data)
+            for obj_id in obj.keys():
+                print ("{}".format(obj[obj_id]))
         else:
+        # print all instances of class
             if self.class_in_dict(line, True):
                 args = line.split()
                 class_name = args[0]
-                filtered_data = {}
-                for key, value in self.data.items():
-                    if key.startswith(class_name):
-                        filtered_data[key] = value
-                print(filtered_data)
+                if class_name in self.class_map:
+                    for obj_id in obj.keys():
+                        if obj[obj_id].__class__.__name__ == class_name:
+                            print ("{}".format(obj[obj_id]))
 
     def do_update(self, line):
         """Updates an instance based on className and id
