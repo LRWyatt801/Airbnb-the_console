@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import cmd
-import models
 from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.city import City
@@ -83,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
                 args = line.split()
                 class_and_id = f"{args[0]}.{args[1]}"
                 self.data.pop(class_and_id)
-                models.storage.save()
+                storage.save()
 
     def do_all(self, line):
         """Prints string representation of all instances,
