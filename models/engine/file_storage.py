@@ -5,6 +5,12 @@
 import json
 import os
 from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class FileStorage:
@@ -12,12 +18,12 @@ class FileStorage:
     and deserializes JSON file to instances"""
 
     __file_path = 'file.json'  # path to the JSON file
-    
+
     # objects will store all objects by <classname>.id
     # ex: to store BaseModel object with id=1212,
     # the key will be BaseModel.1212
     __objects = {}
-    
+
     def all(self) -> dict:
         """returns __objects
 
