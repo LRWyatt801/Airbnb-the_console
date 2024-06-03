@@ -26,8 +26,8 @@ class HBNBCommand(cmd.Cmd):
         "State": State,
         "User": User
     }
-
-    # data = models.storage.all()
+    
+    data = storage.all()
 
     def do_EOF(self, line):
         """EOF command to exit program\n"""
@@ -88,22 +88,19 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """Prints string representation of all instances,
         optional argument className"""
-
-        obj = storage.all()
-
         # print all existing objects
         if not self.class_is(line, False):
-            for obj_id in obj.keys():
-                print ("{}".format(obj[obj_id]))
+            for obj_id in self.data.keys():
+                print ("{}".format(self.data[obj_id]))
         else:
         # print all instances of class
             if self.class_in_dict(line, True):
                 args = line.split()
                 class_name = args[0]
                 if class_name in self.class_map:
-                    for obj_id in obj.keys():
-                        if obj[obj_id].__class__.__name__ == class_name:
-                            print ("{}".format(obj[obj_id]))
+                    for obj_id in self.data.keys():
+                        if self.data[obj_id].__class__.__name__ == class_name:
+                            print ("{}".format(self.data[obj_id]))
 
     def do_update(self, line):
         """Updates an instance based on className and id
