@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""This module contains the cmd line function for the console"""
 
 import cmd
 from models.base_model import BaseModel
