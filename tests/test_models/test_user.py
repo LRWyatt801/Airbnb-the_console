@@ -17,5 +17,11 @@ class TestUser(unittest.TestCase):
     def test_created_at(self):
         self.assertIsInstance(self.my_user.created_at, datetime)
 
-    def test_password(self):
-        self.assertTrue(isinstance(self.password, True))
+    def test_attrs(self):
+        self.assertFalse(isinstance(self.my_user.password, int))
+        self.assertTrue(isinstance(self.my_user.email, str))
+        self.assertTrue(isinstance(self.my_user.first_name, str))
+        self.assertTrue(isinstance(self.my_user.last_name, str))
+
+if __name__ == '__main__':
+    unittest.main()

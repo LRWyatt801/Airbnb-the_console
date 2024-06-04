@@ -16,3 +16,6 @@ class TestCity(unittest.TestCase):
 
     def test_created_at(self):
         self.assertIsInstance(self.my_city.created_at, datetime)
+
+if __name__ == '__main__':
+    unittest.main()

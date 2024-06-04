@@ -16,3 +16,9 @@ class TestState(unittest.TestCase):
 
     def test_created_at(self):
         self.assertIsInstance(self.my_state.created_at, datetime)
+
+    def test_name(self):
+        self.assertIsInstance(self.my_state.name, str)
+
+if __name__ == '__main__':
+    unittest.main()

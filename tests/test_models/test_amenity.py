@@ -16,3 +16,6 @@ class TestAmenity(unittest.TestCase):
 
     def test_created_at(self):
         self.assertIsInstance(self.my_amenity.created_at, datetime)
+
+    def test_name(self):
+        self.assertIsInstance(self.my_amenity.name, str)
