@@ -243,6 +243,6 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     """This is the engine that makes the
-    console work:
+    console work
     cmdloop() makes prompt vroom-vroom"""
     HBNBCommand().cmdloop()
