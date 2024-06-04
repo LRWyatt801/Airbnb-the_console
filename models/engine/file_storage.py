@@ -47,3 +47,7 @@ class FileStorage:
                 class_name, obj_id = key.split('.')
                 obj_instance = eval(class_name)(**value)
                 self.__objects[key] = obj_instance
+
+    @property
+    def file_path(self):
+        return self.__file_path
