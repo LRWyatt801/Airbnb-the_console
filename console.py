@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""This module contains the cmd line function for the console"""
 
 import cmd
 from models.base_model import BaseModel
@@ -183,7 +184,7 @@ class HBNBCommand(cmd.Cmd):
         class_name = args[0]
         if class_name not in self.class_map:
             if err is True:
-                print("** class doesn't exits **")
+                print("** class doesn't exist **")
             return False
         else:
             return True
@@ -243,7 +244,7 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    """This is the engine that makes the
-    console work:
-    cmdloop() makes prompt vroom-vroom"""
+    # """This is the engine that makes the
+    # console work
+    # cmdloop() makes prompt vroom-vroom"""
     HBNBCommand().cmdloop()
