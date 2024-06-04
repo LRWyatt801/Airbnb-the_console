@@ -184,7 +184,7 @@ class HBNBCommand(cmd.Cmd):
         class_name = args[0]
         if class_name not in self.class_map:
             if err is True:
-                print("** class doesn't exits **")
+                print("** class doesn't exist **")
             return False
         else:
             return True
