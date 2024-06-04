@@ -212,7 +212,9 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
 
         instance_id = args[1]
-        if instance_id not in instance_id_list:
+        class_name = args[0]
+        class_name_id = f"{class_name}.{instance_id}"
+        if class_name_id not in self.data.keys():
             if err is True:
                 print("** no instance found **")
             return False
