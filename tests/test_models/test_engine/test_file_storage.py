@@ -20,7 +20,7 @@ class TestFileStorage(unittest.TestCase):
         self.storage = storage
         
 
-    def test_file_path(self):
+    def test__file_path(self):
         """test if __file_path exists"""
         self.assertTrue(os.path.exists('file.json'))
     
