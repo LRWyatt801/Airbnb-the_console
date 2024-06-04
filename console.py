@@ -9,6 +9,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -25,8 +26,10 @@ class HBNBCommand(cmd.Cmd):
         "State": State,
         "User": User
     }
+    
+    data = storage.all()
 
-    def do_EOF(self, arg):
+    def do_EOF(self, line):
         """EOF command to exit program\n"""
         if self.file:
             self.file.close()
@@ -34,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             return True
 
-    def do_quit(self, arg):
+    def do_quit(self, line):
         """Quit command to exit program"""
         return True
 
@@ -57,6 +60,7 @@ class HBNBCommand(cmd.Cmd):
             class_name = args[0]
             class_obj = self.class_map[class_name]
             new_instance = class_obj()
+            new_instance.save()
             print(new_instance.id)
 
     def do_show(self, line):
@@ -66,7 +70,9 @@ class HBNBCommand(cmd.Cmd):
         if self.class_is(line, True) and self.class_in_dict(line, True):
             if (self.instance_id_is(line, True)
                     and self.instance_id__is_valid(line, True)):
-                print("that specific instance")
+                args = line.split()
+                class_and_id = f"{args[0]}.{args[1]}"
+                print(self.data[class_and_id])
 
     def do_destroy(self, line):
         """Deletes an instance based on
@@ -74,19 +80,27 @@ class HBNBCommand(cmd.Cmd):
         if self.class_is(line, True) and self.class_in_dict(line, True):
             if (self.instance_id_is(line, True)
                     and self.instance_id__is_valid(line, True)):
-                print("that specific instance destroyed")
+                args = line.split()
+                class_and_id = f"{args[0]}.{args[1]}"
+                self.data.pop(class_and_id)
+                storage.save()
 
     def do_all(self, line):
         """Prints string representation of all instances,
         optional argument className"""
-
+        # print all existing objects
         if not self.class_is(line, False):
-            print("EVERYTHING")
+            for obj_id in self.data.keys():
+                print ("{}".format(self.data[obj_id]))
         else:
+        # print all instances of class
             if self.class_in_dict(line, True):
                 args = line.split()
                 class_name = args[0]
-                print("EVERYTHING in {}".format(class_name))
+                if class_name in self.class_map:
+                    for obj_id in self.data.keys():
+                        if self.data[obj_id].__class__.__name__ == class_name:
+                            print ("{}".format(self.data[obj_id]))
 
     def do_update(self, line):
         """Updates an instance based on className and id
@@ -97,8 +111,12 @@ class HBNBCommand(cmd.Cmd):
                 if (self.attribute_exits(line, True)
                         and self.value_exits(line, True)):
                     args = line.split()
-                    print("{} {} updated to {}".format(
-                        args[1], args[2], args[3]))
+                    class_and_id = f"{args[0]}.{args[1]}"
+                    inner_dict = self.data[class_and_id]
+                    attr = args[2]
+                    new_val = args[3]
+                    setattr(inner_dict, attr, new_val)
+                    self.data[class_and_id].save()
 
     # ----------------------- Help Text
 
@@ -122,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
         """help text for show"""
         print(f"\nShow: \n"
               + f"Use this to print instances of a class\n\n"
-              + f"example: create <className>\n"
+              + f"example: show <className> <id>\n"
               + f"1234-1234-1234-1234\n")
 
     def help_destroy(self):
@@ -182,13 +200,20 @@ class HBNBCommand(cmd.Cmd):
         else:
             return True
 
+    def extract_ids(self, data):
+        ids = []
+        for key in data.keys():
+            _, id = key.split('.')
+            ids.append(id)
+        return ids
+
     def instance_id__is_valid(self, line, err):
         """checks to see if instance id is valid"""
-        instance_id_dict = {'1234-1234-1234-1234'}
+        instance_id_list = self.extract_ids(self.data)
         args = line.split()
 
         instance_id = args[1]
-        if instance_id not in instance_id_dict:
+        if instance_id not in instance_id_list:
             if err is True:
                 print("** no instance found **")
             return False
