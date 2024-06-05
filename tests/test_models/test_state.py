@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 
+
 import unittest
 import uuid
 from models.state import State
 from datetime import datetime
+
 
 class TestState(unittest.TestCase):
     """Tests for State class"""
@@ -19,6 +21,7 @@ class TestState(unittest.TestCase):
 
     def test_name(self):
         self.assertIsInstance(self.my_state.name, str)
+
 
 if __name__ == '__main__':
     unittest.main()

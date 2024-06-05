@@ -15,16 +15,14 @@ class TestFileStorage(unittest.TestCase):
 
     @classmethod
     def setUpClass(self) -> None:
-        
         self.my_model = BaseModel()
         self.my_model.save()
         self.storage = storage
-        
 
     def test__file_path(self):
         """test if __file_path exists"""
         self.assertTrue(os.path.exists('file.json'))
-    
+
     def test_objects(self):
         self.assertIsInstance(storage.all(), dict)
 
@@ -45,13 +43,14 @@ class TestFileStorage(unittest.TestCase):
         with open('file.json', 'r') as file:
             data = json.load(file)
         self.assertIn("BaseModel.{}".format(self.instance.id), data)
-    
+
     def test_reload(self):
         self.instance = BaseModel()
         self.storage.new(self.instance)
         self.storage.save()
         self.storage.reload()
         self.assertIn(f"BaseModel.{self.instance.id}", self.storage.all())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 
+
 import unittest
 import uuid
 from models.place import Place
 from datetime import datetime
+
 
 class TestPlace(unittest.TestCase):
     """Tests for Place class"""
@@ -22,14 +24,14 @@ class TestPlace(unittest.TestCase):
             0.0,
             [
                 '606ff695-20d9-4f24-859c-0ef52e6a1630'
-            ]  )
+            ])
 
     def test_id(self):
         self.assertTrue(uuid.UUID(self.my_place.id, version=4))
 
     def test_created_at(self):
         self.assertIsInstance(self.my_place.created_at, datetime)
-    
+
     def test_city_id(self):
         self.assertIsInstance(self.my_place.city_id, str)
 
@@ -47,6 +49,7 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(self.my_place.latitude, float)
         self.assertIsInstance(self.my_place.longitude, float)
         self.assertIsInstance(self.my_place.amenity_id, list)
+
 
 if __name__ == '__main__':
     unittest.main()
