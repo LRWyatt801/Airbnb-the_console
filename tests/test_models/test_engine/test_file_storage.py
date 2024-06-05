@@ -52,8 +52,11 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn("BaseModel.{}".format(self.instance.id), data)
     
     def test_reload(self):
-        self.new_data = self.storage.reload()
-        self.assertEqual(self.new_data, self.storage.reload())
+        self.instance = BaseModel()
+        self.storage.new(self.instance)
+        self.storage.save()
+        self.storage.reload()
+        self.assertIn(f"BaseModel.{self.instance.id}", self.storage.all())
 
 if __name__ == "__main__":
     unittest.main()
