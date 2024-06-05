@@ -19,10 +19,16 @@ class TestUser(unittest.TestCase):
     def test_created_at(self):
         self.assertIsInstance(self.my_user.created_at, datetime)
 
-    def test_attrs(self):
+    def test_user_password(self):
         self.assertFalse(isinstance(self.my_user.password, int))
+
+    def test_user_email(self):
         self.assertTrue(isinstance(self.my_user.email, str))
+
+    def test_user_firstname(self):
         self.assertTrue(isinstance(self.my_user.first_name, str))
+
+    def test_user_lastname(self):
         self.assertTrue(isinstance(self.my_user.last_name, str))
 
 
