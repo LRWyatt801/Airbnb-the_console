@@ -31,17 +31,12 @@ class TestFileStorage(unittest.TestCase):
     def test_all(self):
         expected_return = storage.all()
         self.assertIs(storage.all(), expected_return)
-    
-    # def test_new(self):
-    #     self.storage.new(self.my_model)
-    #     key = "{}.{}".format(self.my_model.__class__.__name__,self.my_model.id)
-    #     self.assertIn(key, self.storage)
 
-    # def test_save(self):
-    #     self.new_model = BaseModel()
-    #     self.new_model.save()
-    #     self.new_data = self.storage.reload()
-    #     self.assertEqual(self.new_data, self.storage.reload())
+    def test_save(self):
+        self.new_model = BaseModel()
+        self.new_model.save()
+        self.new_data = self.storage.reload()
+        self.assertEqual(self.new_data, self.storage.reload())
 
     def test_new_and_save(self):
         self.instance = BaseModel()
