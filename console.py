@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
         "State": State,
         "User": User
     }
-    
+
     data = storage.all()
 
     def do_EOF(self, line):
@@ -91,16 +91,16 @@ class HBNBCommand(cmd.Cmd):
         # print all existing objects
         if not self.class_is(line, False):
             for obj_id in self.data.keys():
-                print ("{}".format(self.data[obj_id]))
+                print("{}".format(self.data[obj_id]))
         else:
-        # print all instances of class
+            # print all instances of class
             if self.class_in_dict(line, True):
                 args = line.split()
                 class_name = args[0]
                 if class_name in self.class_map:
                     for obj_id in self.data.keys():
                         if self.data[obj_id].__class__.__name__ == class_name:
-                            print ("{}".format(self.data[obj_id]))
+                            print("{}".format(self.data[obj_id]))
 
     def do_update(self, line):
         """Updates an instance based on className and id

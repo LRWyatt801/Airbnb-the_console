@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 
+
 import unittest
 import uuid
 from models.user import User
 from datetime import datetime
+
 
 class TestUser(unittest.TestCase):
     """Tests for Userclass"""
@@ -22,6 +24,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(isinstance(self.my_user.email, str))
         self.assertTrue(isinstance(self.my_user.first_name, str))
         self.assertTrue(isinstance(self.my_user.last_name, str))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -34,7 +34,6 @@ class BaseModel:
             self.updated_at = datetime.now()  # Update timestamp
             models.storage.new(self)
 
-
     def __str__(self) -> str:
         """Change string representation of class instance to:
         [<class name>] (<self.id>) <self.__dict__>
@@ -43,11 +42,11 @@ class BaseModel:
             str: String representation of class instance
         """
         return ("[{}] ({}) {}"
-               .format(
-                   self.__class__.__name__,
-                   self.id,
-                   self.__dict__
-               ))
+                .format(
+                    self.__class__.__name__,
+                    self.id,
+                    self.__dict__
+                ))
 
     def save(self) -> None:
         """Updates timestamp for updated_at
