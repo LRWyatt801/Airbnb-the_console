@@ -7,8 +7,9 @@ The HBNB Console, a backend tool for the Atlas AirBnB project
 
 ## Description
 
-this is a description of the HBNB console, slightly more in depth with a few small examples and images of how it works. Specifically does not get into how to use it, that comes below, this area is more to showcase the projects utility 
+![HBNBexampleouse](https://github.com/LRWyatt801/atlas-AirBnB_clone/assets/63436710/a2248de1-c3cc-48ce-bc94-f77d39df831c)
 
+The HBNB console is a tool to access and manipulate the data of the greater HBNB website directly. It adds basic CRUD functionality (create, read, update and delete) to all the basic data structures of the website. 
 
 ## Installation
 
@@ -25,12 +26,12 @@ Here's a list of commands our console supports:
 
 - ```EOF```     - exits the console
 - ```quit```    - also exits the console
-- ```help```    - assists with commands
-- ```create```  - creates a new instance (state, city, listing, etc)
-- ```show```    - show will print a specific instance
-- ```destroy``` - destroy + className + id will remove that instance from the program
-- ```all```     - all + className will print all instances of a class, shows everything with no arguments
-- ```update```  - update + className + id will update that specific instance
+- ```help```    - assists with commands ```ex. help create```
+- ```create```  - creates a new instance (state, city, listing, etc) ```ex. create User```
+- ```show```    - show will print a specific instance ```ex. show User 1212-1212-1212-1212```
+- ```destroy``` - destroy + className + id will remove that instance from the program ```ex. destroy User 1212-1212-1212-1212```
+- ```all```     - all + className will print all instances of a class, shows everything with no arguments ```ex. all User```
+- ```update```  - update + className + id will update that specific instance ```ex. update User 1212-1212-1212-1212 email 'email@email.com'```
 
 > [!IMPORTANT]
 > Most of these commands require entering both the className of the instance and the id in question in order to access, as shown: 
@@ -54,20 +55,20 @@ this is a table and description of all the modules we used to make the program, 
 The HBNB console doesn't depend on a strict hierarchy of monolithic Dictionaries, rather it connects separate instances through unique ids
 
 ```Python
-listing = {
-    'id' = '1234-1234-1234-1234',
-    'user_id' = '3456-3456-3456-3456'
-    'city_id' = '7890-7890-7890-7890'
-}
-
-city = {
-    'id' = '7890-7890-7890-7890'
-    'state_id' = '5678-5678-5678-5678'
-}
-
-state = {
-    'id' = '5678-5678-5678-5678'
-}
+{'Place.1212-1212-1212-1212' : {
+    'id': '1234-1234-1234-1234',
+    'user_id': '3456-3456-3456-3456',
+    'city_id': '7890-7890-7890-7890'
+},
+'City.2323-2323-2323-2323':  {
+    'id': '7890-7890-7890-7890',
+    'state_id': '5678-5678-5678-5678',
+    'name': 'Tulsa'
+},
+'State.3434-3434-3434-3434':  {
+    'id': '5678-5678-5678-5678',
+    'name': 'Oklahoma'
+}}
 ```
 All the above classes inherit from a common class ```Basemodel``` which gives each class a common pool of methods and attributes to pull from. Here's a diagram of how these different classes interact with one another: 
 
