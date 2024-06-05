@@ -147,7 +147,7 @@ class HBNBCommand(cmd.Cmd):
         """help text for destroy"""
         print(f"\nDestroy: \n"
               + f"Use this to destroy an instance of a class\n\n"
-              + f"example: destroy <className>\n")
+              + f"example: destroy <className> <id>\n")
 
     def help_all(self):
         """help text for all"""
