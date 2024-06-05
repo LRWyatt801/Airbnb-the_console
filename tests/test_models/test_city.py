@@ -22,5 +22,6 @@ class TestCity(unittest.TestCase):
     def test_name(self):
         self.assertIsInstance(self.my_city.name, str)
 
+
 if __name__ == '__main__':
     unittest.main()
