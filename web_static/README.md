@@ -1,0 +1,1 @@
+Webstatic for Hbnb project
